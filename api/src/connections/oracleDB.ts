@@ -1,5 +1,5 @@
 import oracledb  from 'oracledb'
-import 'dotenv/config'
+
 
 const oracleLibDir = process.env.ORACLE_DB_DIR
 const username = process.env.ORACLE_DB_USER

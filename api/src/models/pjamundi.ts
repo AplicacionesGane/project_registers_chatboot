@@ -1,5 +1,5 @@
-import { chat_bot } from '../connections/chat-bot-92'
-import { DataTypes, Model, InferAttributes, InferCreationAttributes } from 'sequelize'
+import { DataTypes, Model, InferAttributes, InferCreationAttributes } from 'sequelize';
+import { chat_bot } from '../connections/chat-bot-92';
 
 class Pjamundi extends Model<InferAttributes<Pjamundi>, InferCreationAttributes<Pjamundi>> {
   declare cedula: number

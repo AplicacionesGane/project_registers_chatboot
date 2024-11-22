@@ -1,6 +1,6 @@
 import { ClientesChatBootRouter } from './routes/clientes-chat-bot.routes';
 import { ClientesRouter } from './routes/clientes.routes'
-import 'dotenv/config'
+
 
 import express from "express"
 import mrg from 'morgan'

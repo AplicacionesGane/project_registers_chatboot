@@ -2,7 +2,7 @@ import { UserIcon, LockIcon } from '../components/icons'
 import { Input, Button, Label } from '../components/ui'
 import { useAuth } from '../auth/AuthProvider'
 import { useState, FormEvent } from 'react'
-import { toast, Toaster } from 'sonner'
+import { Toaster } from 'sonner'
 import axios from 'axios'
 
 import { LOGIN_URL, APP_NAME } from '../utils/contanst'
@@ -10,7 +10,6 @@ import { LOGIN_URL, APP_NAME } from '../utils/contanst'
 function LoginPage () {
   const { setIsAuthenticated } = useAuth()
   const [username, setUsername] = useState('')
-  const [errorString, setErrorString] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = (ev: FormEvent) => {
@@ -23,17 +22,7 @@ function LoginPage () {
         }
       })
       .catch(error => {
-        console.log(error)
-        if (error.message === 'Network Error') {
-          setErrorString('Error de conexión, y/o Red, contacte al administrador del sistema')
-          return
-        }
-        setErrorString(error.response.data)
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setErrorString('')
-        }, 4000)
+        console.error(error)
       })
   }
 
@@ -69,9 +58,7 @@ function LoginPage () {
         </form >
       </section>
 
-      {errorString && toast.error(errorString, { description: 'Error al Iniciar Sesion', id: ' ', duration: 5000 })}
-
-      <Toaster position='top-right' duration={3000} />
+      <Toaster position='top-right' duration={4000} richColors />
 
     </section >
   )
