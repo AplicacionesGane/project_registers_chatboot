@@ -26,20 +26,11 @@ pipeline {
             }
         }
 
-        stage('Copy packages for build image'){
-          steps {
-              script {
-                sh 'cp /var/lib/jenkins/utils/instantclient-basic-linux.x64-11.2.0.4.0.zip ./api'
-                sh 'cp /var/lib/jenkins/utils/node-v20.17.0-linux-x64.tar.xz ./api'
-            }
-          }
-        }
-
         stage('install dependencies') {
             steps {
                 script {
-                    sh 'cd ./client && yarn'
-                    sh 'cd ./client && yarn build'
+                    sh 'cd ./client && npm install'
+                    sh 'cd ./client && node --run build'
                 }
             }
         }
