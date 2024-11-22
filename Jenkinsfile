@@ -8,8 +8,7 @@ pipeline {
     environment {
         ENV_API_CHAT_BOT = credentials('ENV_API_CHAT_BOT')
         ENV_CLIENT_CHAT_BOT = credentials('ENV_CLIENT_CHAT_BOT')
-        ENV_TNSNAMES = credentials('ENV_TNSNAMES')
-
+        ENV_TNS_NAMES = credentials('ENV_TNSNAMES_CHAT_BOT')
     }
     
     stages {
@@ -18,7 +17,7 @@ pipeline {
                 script {
                     def envApiContent = readFile(ENV_API_CHAT_BOT)
                     def envClientContent = readFile(ENV_CLIENT_CHAT_BOT)
-                    def envTnsNamesContent = readFile(ENV_TNSNAMES)
+                    def envTnsNamesContent = readFile(ENV_TNS_NAMES)
                     
                     writeFile file: './api/.env', text: envApiContent
                     writeFile file: './client/.env', text: envClientContent
@@ -62,6 +61,13 @@ pipeline {
                         echo "Image ${images} does not exist."
                         echo "continuing..."
                     }
+                }
+            }
+        }
+        stage('copy folder instan client to api'){
+            steps {
+                script {
+                  sh 'cp -r /var/lib/jenkins/instantclient_11_2 ./api'
                 }
             }
         }
