@@ -25,54 +25,35 @@ pipeline {
         }
       }
     }
-
-      stage('install dependencies') {
-    steps {
-      script {
-        sh 'cd ./client && npm install'
-        sh 'cd ./client && node --run build'
+    stage('install dependencies') {
+      steps {
+        script {
+          sh 'cd ./client && npm install'
+          sh 'cd ./client && node --run build'
+        }
       }
     }
-      }
-
-      stage('down docker compose') {
-    steps {
-      script {
-        sh 'docker compose down'
-      }
-    }
-      }
-      /*
-
-      TODO: revisar la eliminacion de imagenes en el servidor para la api
-
-      stage('delete images'){
-          steps{
-              script {
-                  def images = 'api-chat:v_1.2'
-                  if (sh(script: "docker images -q ${images}", returnStdout: true).trim()) {
-                      sh "docker rmi ${images}"
-                  } else {
-                      echo "Image ${images} does not exist."
-                      echo "continuing..."
-                  }
-              }
-          }
-      }
-      */
-      stage('copy folder instan client to api') {
-    steps {
-      script {
-        sh 'cp -r /var/lib/jenkins/instantclient_11_2 ./api'
+    stage('down docker compose') {
+      steps {
+        script {
+          sh 'docker compose down'
+        }
       }
     }
-      }
-      stage('run docker compose') {
-    steps {
-      script {
-        sh 'docker compose up -d'
+    stage('copy folder instan client to api') {
+      steps {
+        script {
+          sh 'cp -r /var/lib/jenkins/instantclient_11_2 ./api'
+        }
       }
     }
+
+    stage('run docker compose') {
+      steps {
+        script {
+          sh 'docker compose up -d'
+        }
       }
+    }
   }
 }
