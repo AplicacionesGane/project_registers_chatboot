@@ -3,7 +3,7 @@ import { userCreated } from '../views/userCreated'
 import { deleteUser } from '../views/deleteUser'
 
 import { createTransport } from 'nodemailer'
-import 'dotenv/config'
+
 
 export async function sendEmail (userCreado: ClieFielType) {
   const correo = userCreado.correo

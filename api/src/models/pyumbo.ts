@@ -1,20 +1,13 @@
-import { chat_bot } from '../connections/chat-bot-92'
-import { DataTypes, Model, Optional } from 'sequelize'
-import { ClienteType } from '../schemas/Cliente.Schema'
+import { DataTypes, Model, InferAttributes, InferCreationAttributes } from 'sequelize';
+import { chat_bot } from '../connections/chat-bot-92';
 
-interface PyumboAttributes extends  ClienteType{
-  fregistro?: Date;
-}
-
-type PyumboCreationAttributes = Optional<PyumboAttributes, 'cedula'>
-
-class Pyumbo extends Model<PyumboAttributes, PyumboCreationAttributes> {
-  declare cedula: number;
-  declare nombre: string;
-  declare telefono: string;
-  declare correo: string;
-  declare telwhats: string;
-  declare fregistro: Date;
+class Pyumbo extends Model<InferAttributes<Pyumbo>, InferCreationAttributes<Pyumbo>> {
+  declare cedula: number
+  declare nombre: string
+  declare telefono: string
+  declare correo: string
+  declare telwhats: string
+  declare fregistro: Date
 }
 
 Pyumbo.init({
