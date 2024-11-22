@@ -1,20 +1,13 @@
 import { chat_bot } from '../connections/chat-bot-92'
-import { DataTypes, Model, Optional } from 'sequelize'
-import { ClienteType } from '../schemas/Cliente.Schema'
+import { DataTypes, Model, InferAttributes, InferCreationAttributes } from 'sequelize'
 
-interface PjamundiAttributes extends ClienteType {
-  fregistro?: Date;
-}
-
-type PjamundiCreationAttributes = Optional<PjamundiAttributes, 'cedula'>
-
-class Pjamundi extends Model<PjamundiAttributes, PjamundiCreationAttributes> {
-  declare cedula: number;
-  declare nombre: string;
-  declare telefono: string;
-  declare correo: string;
-  declare telwhats: string;
-  declare fregistro: Date;
+class Pjamundi extends Model<InferAttributes<Pjamundi>, InferCreationAttributes<Pjamundi>> {
+  declare cedula: number
+  declare nombre: string
+  declare telefono: string
+  declare correo: string
+  declare telwhats: string
+  declare fregistro: Date
 }
 
 Pjamundi.init({
