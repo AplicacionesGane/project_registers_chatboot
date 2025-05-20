@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   web-chat:
-    image: nginx:stable-alpine3.19-slim
-    container_name: web-chat
+    image: nginx:stable-alpine3.21-perl
+    container_name: web_chat_v1
     restart: always
     volumes:
       - ./client/dist:/usr/share/nginx/html
